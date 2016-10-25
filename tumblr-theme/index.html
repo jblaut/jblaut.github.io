@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><title>{Title}</title>
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+{block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+
+<!---- base theme by enterprizer @ tumblr, for public use --->
+
+<meta name="color:Background" content="#ffffff"/>
+<meta name="color:Text" content="#838282"/>
+<meta name="color:Link" content="#b8b8b8"/>
+<meta name="image:sidebar" content=""/>
+
+<style type="text/css">
+
+body {
+    background:{color:background};
+    margin:0px;
+    color:{color:text};
+    font-family:Calibri;
+    font-size:10px;
+    line-height:100%;
+}
+
+a {
+    text-decoration:none;
+    outline:none;
+    -moz-outline-style:none;
+    color:{color:link};
+}
+
+img {
+    border:none;
+}
+
+blockquote {
+    padding-left:5px;
+    border-left:2px solid;
+}
+    
+blockquote blockquote {
+    padding-left:5px;
+    border-left:2px solid;
+}
+
+h1 {
+    font-size:15px;
+}
+
+#entries {
+    padding:10px;
+    width:500px;
+    margin-left:500px;
+    margin-top:40px;
+}
+
+#post {
+    width:500px;
+    padding-bottom:20px;
+}
+
+#sidebar {
+    width:250px;
+    position:fixed;
+    margin-left:200px;
+    margin-top:100px;
+}
+
+#title {
+    font-size:15px;
+    text-align:center;
+    margin-bottom:5px;
+}
+
+#sidebarimage {
+    width 250px;
+}
+
+#sidebarimage img {
+    width:250px;
+}
+
+#description {
+    padding:5px;
+    text-align:center;
+}
+
+#pagination {
+    font-size:20px;
+    text-align:center;
+}
+
+#info {
+    text-align:center;
+    margin-top:10px;
+}
+
+#asker {
+    float:left;
+    margin-right:5px;
+}
+
+{CustomCSS}</style></head><body>
+
+<div id="sidebar">
+
+<div id="title">{Title}</div>
+
+<div id="sidebarimage"><img src="{image:sidebar}"></div>
+
+<div id="description">{Description}</div>
+
+<div id="pagination">
+{block:Pagination}{block:PreviousPage}<a href="{PreviousPage}">«</a>{/block:PreviousPage}
+{block:NextPage}<a href="{NextPage}">»</a>{/block:NextPage}{/block:Pagination}    
+</div>
+
+</div>
+
+<div id="entries">{block:Posts}<div id="post">
+
+{block:Text}<h1>{block:Title}{Title}{/block:Title}</h1>{Body}{/block:Text} 
+
+{block:Photo}{LinkOpenTag}<img src="{PhotoURL-500}">{LinkCloseTag}{block:Caption}{Caption}{/block:Caption}{/block:Photo} 
+
+{block:Photoset}{Photoset-500}{block:Caption}{Caption}{/block:Caption}{/block:Photoset}
+
+{block:Quote}{Quote}{block:Source} —{Source}{/block:Source}{/block:Quote} 
+
+{block:Link}<h1><a href="{URL}" {Target}>{Name}</a></h1>{block:Description}{Description}{/block:Description}{/block:Link} 
+
+{block:Chat}{block:Title}<h1>{Title}</h1>{/block:Title}{block:Lines}{block:Label}<b>{Label}</b>{/block:Label} {Line}<br>{/block:Lines}{/block:Chat}
+
+{block:Audio}{AudioPlayerWhite}{block:Caption}{Caption}{/block:Caption}{/block:Audio} 
+
+{block:Video}{Video-500}{block:Caption}{Caption}{/block:Caption}{/block:Video} 
+
+{block:Answer}<div id="asker"><img src="{AskerPortraitURL-24}"></div>{Asker}:<br>{Question}<br>{Answer}{/block:Answer}
+
+<div id="info">
+{block:Date}posted {TimeAgo}{/block:Date} with <a href="{Permalink}">
+{NoteCountWithLabel}</a>{block:RebloggedFrom}<br>via:<a href="{ReblogParentURL}" 
+title="{ReblogParentTitle}">{ReblogParentName}</a> source:<a href="{ReblogRootURL}"title="{ReblogRoottitle}">{ReblogRootName}</a>{/block:RebloggedFrom}<br> {block:HasTags}{block:Tags} #<a href="{TagURL}">{Tag}</a>{/block:Tags}{/block:HasTags}</div>
+
+</div>
+{block:PostNotes}{PostNotes}{/block:PostNotes}
+{/block:Posts}</div>
+
+</body></html>
