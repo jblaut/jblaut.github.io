@@ -4,13 +4,21 @@
 <link rel="shortcut icon" href="{Favicon}">
 <link rel="alternate" type="application/rss+xml" href="{RSS}">
 {block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
-
+<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
 <!---- base theme by enterprizer @ tumblr, for public use --->
 
 <meta name="color:Background" content="#ffffff"/>
 <meta name="color:Text" content="#838282"/>
 <meta name="color:Link" content="#b8b8b8"/>
-<meta name="image:sidebar" content=""/>
+<meta name="color:Link Hover" content="#000"/>
+<meta name="color:Info Box Color" content=""/>
+
+<!-- Navigation Links -->
+<meta name="text:Link1 Title" content="" />
+<meta name="text:Link1" content="" />
+<meta name="text:Link2 Title" content="" />
+<meta name="text:Link2" content="" />
+<!-- End of Navigation Links -->
 
 <style type="text/css">
 
@@ -18,16 +26,24 @@ body {
     background:{color:background};
     margin:0px;
     color:{color:text};
-    font-family:Calibri;
-    font-size:10px;
-    line-height:100%;
+    font-family:Sans-serif;
+    font-size:15px;
+    line-height:20px;
 }
 
 a {
-    text-decoration:none;
     outline:none;
     -moz-outline-style:none;
     color:{color:link};
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition:.5s;
+}
+
+a:hover {
+    color: {color:link hover};
 }
 
 img {
@@ -45,7 +61,46 @@ blockquote blockquote {
 }
 
 h1 {
-    font-size:15px;
+    font-size:20px;
+}
+
+h2 {
+    font-size: 18px;
+}
+
+li {
+    margin-bottom: 10px;
+    line-height: 18px;
+}
+.resources {
+    margin-bottom: 30px;
+    font-size: 30px;
+    text-decoration: underline;
+}
+
+#navigation {
+    text-align: center;
+}
+
+#navigation a {
+    text-decoration: none;
+}
+
+#navigation ul {
+   list-style: none;
+   margin-left: 0;
+   padding-left: 1em;
+   text-indent: -1em;
+   font-family: 'Abel', sans-serif;
+   font-size: 20px;
+}
+
+#navigation li:before {
+    content: '» ';
+}
+
+#navigation li:after {
+    content: ' «';
 }
 
 #entries {
@@ -58,6 +113,9 @@ h1 {
 #post {
     width:500px;
     padding-bottom:20px;
+    border: 1px solid #000;
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
 #sidebar {
@@ -68,9 +126,11 @@ h1 {
 }
 
 #title {
-    font-size:15px;
+    font-size:30px;
     text-align:center;
     margin-bottom:5px;
+    line-height: 30px;
+    font-family: 'Abel', sans-serif;
 }
 
 #sidebarimage {
@@ -91,11 +151,6 @@ h1 {
     text-align:center;
 }
 
-#info {
-    text-align:center;
-    margin-top:10px;
-}
-
 #asker {
     float:left;
     margin-right:5px;
@@ -105,11 +160,17 @@ h1 {
 
 <div id="sidebar">
 
-<div id="title">{Title}</div>
-
-<div id="sidebarimage"><img src="{image:sidebar}"></div>
+<div id="title"><a href="/">{Title}</a></div>
 
 <div id="description">{Description}</div>
+
+<div id="navigation">
+    <h2>Links</h2>
+    <ul>
+        {block:ifLink1}<li><a href="{text:Link1}">{text:Link1 Title}</a></li>{/block:ifLink1}
+        {block:ifLink2}<li><a href="{text:Link2}">{text:Link2 Title}</a></li>{/block:ifLink2}
+    </ul>
+</div>
 
 <div id="pagination">
 {block:Pagination}{block:PreviousPage}<a href="{PreviousPage}">«</a>{/block:PreviousPage}
@@ -138,10 +199,6 @@ h1 {
 
 {block:Answer}<div id="asker"><img src="{AskerPortraitURL-24}"></div>{Asker}:<br>{Question}<br>{Answer}{/block:Answer}
 
-<div id="info">
-{block:Date}posted {TimeAgo}{/block:Date} with <a href="{Permalink}">
-{NoteCountWithLabel}</a>{block:RebloggedFrom}<br>via:<a href="{ReblogParentURL}" 
-title="{ReblogParentTitle}">{ReblogParentName}</a> source:<a href="{ReblogRootURL}"title="{ReblogRoottitle}">{ReblogRootName}</a>{/block:RebloggedFrom}<br> {block:HasTags}{block:Tags} #<a href="{TagURL}">{Tag}</a>{/block:Tags}{/block:HasTags}</div>
 
 </div>
 {block:PostNotes}{PostNotes}{/block:PostNotes}
