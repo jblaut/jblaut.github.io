@@ -1,0 +1,40 @@
+.main {
+		margin-left: auto;
+		margin-right: auto;
+		width: 65%;
+		margin-top: 50px;
+}
+
+.jumbotron {
+		padding: 25px;
+		/*clear: both;*/
+		border-radius: 15px;
+		/*display: block;*/
+		overflow: hidden;
+}
+
+.panel-login, .panel-register {
+	width: 49%;
+}
+
+.panel-login {
+	float: left;
+	/*margin-right: 22px;*/
+}
+
+.panel-register {
+	float: right;
+	/*margin-left: 22px;*/
+}
+
+.registration-login-panels {
+		clear:both;
+}
+
+span.clear {
+	clear:both;
+}
+
+.form-group.control-label {
+	text-align: left;
+}
