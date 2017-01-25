@@ -2,5 +2,8 @@ node_modules
 dist
 .tmp
 app/styles/.sass-cache
+*.css
+*.css.map
+.sass-cache
 bower_components
 test/bower_components
