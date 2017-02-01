@@ -29,10 +29,10 @@
         <li>Create your own To Watch list</li>
       </ul>
     </div>
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="scripts/main.js"></script>
   </body>
   <footer>
-    <p>© Jamie Blaut 2017</p>
+    <p>© J Blaut 2017</p>
   </footer>
 </html>
