@@ -1,5 +1,8 @@
 <?php
   session_start();
+  
+  $loggedIn = isset($_SESSION['logged_in']) ? $_SESSION['logged_in'] : 'false';
+  $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'false';
 ?>
 <!DOCTYPE html>
 <html lang="en-gb">
@@ -10,85 +13,99 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-<style>
-.myLink {display: none}
-</style>
-<body class="w3-light-grey">
 
-<!-- Navigation Bar -->
-<ul class="w3-navbar w3-black w3-border-bottom w3-large">
-  <li><a class="w3-text-white w3-red"><b><i class="fa fa-arrows w3-margin-right"></i>Customise</b></a></li>
-  <li><a href="/" class="w3-text-white w3-hover-blue-grey">Home</a></li>
-  <li><a href="features.html" class="w3-text-white w3-hover-blue-grey">Features</a></li>
-  <li><a href="user-area.html" class="w3-text-white w3-hover-blue-grey">User Area</a></li>
-</ul>
+<body>
+<div class="j-intro">
+  <!-- Navigation Bar -->
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-text-white w3-button" style="background-color:#283142"><b><i class="fa fa-arrows w3-margin-right"></i>Customise</b></a>
+    <a href="index.php" class="w3-text-white j-hover-darkish-blue w3-button">Home</a>
+    <a href="user-area.php" class="w3-text-white j-hover-darkish-blue w3-button" id="userarea">User Area</a>
+    <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red w3-button" style="display:none">
+      <i class="fa fa-user"></i>
+    </a>
+  </div>
+  <!-- Navigation Bar -->
 
-<!-- Header -->
-<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
-  <img class="w3-image" src="images/placeholder_main.jpg" alt="London" width="1500" height="700">
-  <div class="w3-display-middle" style="width:65%">
-
-    <!-- Tabs -->
-    <div id="Search" class="w3-container w3-white w3-padding-16">
-      <h3>Search by Actor or Movie Title</h3>
-      <div class="w3-row-padding" style="margin:0 -16px;">
-        <form action="results.php" method="get">
-          <div class="w3-threequarter" style="padding-left:10px">
-            <input class="w3-input" name="search" type="text" placeholder="Search for movies or actors">
+  <div class="w3-container w3-content j-search-box">
+    <div class="w3-row">
+      <div class="w3-col m1">
+        <br>
+      </div>
+      <div class="w3-col m10">
+        <div class="j-search-border">
+          <h3>Search by Actor or Movie Title</h3>
+          <div class="w3-row-padding" style="margin:0 -16px;">
+          	<form action="results.php" method="get">
+          		<div class="w3-threequarter" style="padding-left:10px">
+          			<input class="w3-input" name="search" type="text" placeholder="Search for movies or actors">
+                <div class="j-radio-buttons">
+            			<input type="radio" name="searchType" required value="movie"><label>Movie</label>
+            			<input type="radio" name="searchType" required value="person"><label>Person</label>
+                </div>
+          		</div>
+          		<div class="w3-quarter w3-center" style="padding-left:10px">
+          			<button class="w3-btn w3-center w3-dark-grey">Search</button>
+          		</div>
+          	</form>
           </div>
-          <div class="w3-quarter" style="padding-left:10px">
-            <button class="w3-btn w3-center w3-dark-grey">Search</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
-</header>
+</div>
+<div class="j-features-1">
+  <div class="w3-container w3-content">
+    <div class="w3-row">
+      <div class="w3-col m5">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor risus, consectetur eu erat ut, pretium vestibulum urna. Cras at venenatis felis. Maecenas id quam sit amet lectus tincidunt auctor. Vivamus hendrerit fermentum massa, vel facilisis metus tristique et. Curabitur consectetur ex nec imperdiet bibendum. Ut suscipit id libero eu dignissim. Cras a mattis elit, non elementum ipsum.
+      </div>
+      <div class="w3-col m7">
 
-  <div class="w3-content w3-container w3-padding-64" id="about">
-    <h3 class="w3-center">ABOUT THE WEBSITE</h3>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-      qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>
-  </div>
-
-  <div class="w3-row w3-center w3-dark-grey w3-padding-16">
-    <div class="w3-quarter w3-section">
-      <span class="w3-xlarge">140,000+</span><br>
-      Actors
-    </div>
-    <div class="w3-quarter w3-section">
-      <span class="w3-xlarge">20,000+</span><br>
-      Movies
-    </div>
-    <div class="w3-quarter w3-section">
-      <span class="w3-xlarge">10,000+</span><br>
-      Users
-    </div>
-    <div class="w3-quarter w3-section">
-      <span class="w3-xlarge">1</span><br>
-      Website
+      </div>
     </div>
   </div>
-
-<!-- Footer -->
-<footer class="w3-container w3-center w3-opacity w3-margin-bottom">
-  <h5>Find Us On</h5>
-  <div class="w3-xlarge w3-padding-16">
-    <i class="fa fa-facebook-official w3-hover-text-indigo"></i>
-    <i class="fa fa-instagram w3-hover-text-purple"></i>
-    <i class="fa fa-snapchat w3-hover-text-yellow"></i>
-    <i class="fa fa-pinterest-p w3-hover-text-red"></i>
-    <i class="fa fa-twitter w3-hover-text-light-blue"></i>
-    <i class="fa fa-linkedin w3-hover-text-indigo"></i>
+</div>
+<div class="j-features-2">
+  <div class="w3-container w3-content">
+    <div class="w3-row">
+      <div class="w3-col m6">
+        <br>
+      </div>
+      <div class="w3-col m5">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor risus, consectetur eu erat ut, pretium vestibulum urna. Cras at venenatis felis. Maecenas id quam sit amet lectus tincidunt auctor. Vivamus hendrerit fermentum massa, vel facilisis metus tristique et. Curabitur consectetur ex nec imperdiet bibendum. Ut suscipit id libero eu dignissim. Cras a mattis elit, non elementum ipsum.
+      </div>
+    </div>
   </div>
-  <!-- <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p> -->
+</div>
+<div class="j-features-1">
+  <div class="w3-container w3-content">
+    <div class="w3-row">
+      <div class="w3-col m5">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor risus, consectetur eu erat ut, pretium vestibulum urna. Cras at venenatis felis. Maecenas id quam sit amet lectus tincidunt auctor. Vivamus hendrerit fermentum massa, vel facilisis metus tristique et. Curabitur consectetur ex nec imperdiet bibendum. Ut suscipit id libero eu dignissim. Cras a mattis elit, non elementum ipsum.
+      </div>
+      <div class="w3-col m7">
+
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="w3-center">
+    Created by J. Blaut
+  </div>
 </footer>
-
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="scripts/main.js"></script>
-
 </body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="scripts/main.js"></script>
+<script>
+var loggedIn = <?php echo json_encode($loggedIn); ?>;
+var username = <?php echo json_encode($username); ?>;
+console.log(loggedIn);
+if (loggedIn == 'true') {
+  $('#userarea').text('Dashboard');
+  $('#userarea').attr('href', 'dashboard.php');
+}
+</script>
+<script src="scripts/loggedIn.js"></script>
 </html>
