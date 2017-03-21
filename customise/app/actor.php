@@ -2,6 +2,8 @@
 	session_start();
 	
 	$searchQuery = $_GET['id'];
+	$loggedIn = isset($_SESSION['logged_in']) ? $_SESSION['logged_in'] : 'false';
+	$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'false';
 ?>
 <!DOCTYPE html>
 <html lang="en-gb">
@@ -11,104 +13,88 @@
 <link rel="stylesheet" href="styles/main.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="icon" type="image/png" href="images/favicon.png">
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="scripts/main.js"></script>
-<body class="w3-light-grey">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+<body>
 
-<!-- Navigation Bar -->
-<ul class="w3-navbar w3-black w3-border-bottom w3-large">
-  <li><a class="w3-text-white w3-red"><b><i class="fa fa-arrows w3-margin-right"></i>Customise</b></a></li>
-  <li><a href="/" class="w3-text-white w3-hover-blue-grey">Home</a></li>
-  <li><a href="features.html" class="w3-text-white w3-hover-blue-grey">Features</a></li>
-  <li><a href="user-area.html" class="w3-text-white w3-hover-blue-grey">User Area</a></li>
-</ul>
-
-
-<!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:20px">    
-  <div class="w3-center">
-		<i class="fa fa-refresh fa-spin" style="font-size:48px" id="loadingIcon"></i>
-	</div>
-	<!-- The Grid -->
-  <div class="w3-row" id="results">
-    <!-- Left Column -->
-    <div class="w3-col m3">
-      <!-- Profile -->
-      <div class="w3-card-2 w3-round w3-white">
-        <div class="w3-container">
-         <h3 class="w3-center" id="name"></h4>
-         <p class="w3-center" id="photo"></p>
-         <hr>
-         <p id="placeOfBirth"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> </p>
-         <p id="dateOfBirth"><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> </p>
-        </div>
-      </div>
-      <br>
-    <!-- End Left Column -->
-    </div>
-    
-    <!-- Middle Column -->
-    <div class="w3-col m5">
-      <div class="w3-container w3-card-2 w3-white w3-round w3-margin" style="margin-top:0 !important;">
-        <h4 id="filmographyTitle">Biography</h1>
-				<p id="bio"></p>
-      </div> 
-      
-    <!-- End Middle Column -->
-    </div>
-		
-    <!-- Right Column -->
-    <div class="w3-col m4">
-      <div class="w3-container w3-card-2 w3-white w3-round">
-				<h4 id="filmographyTitle">Filmography</h1>
-				<ul id="filmographyList"></ul>
-      </div> 
-      
-    <!-- End Right Column -->
-    </div>
-    
-  <!-- End Grid -->
+<div class="j-intro">
+	<div class="w3-bar" id="myNavbar">
+    <a class="w3-text-white w3-button" style="background-color:#283142"><b><i class="fa fa-arrows w3-margin-right"></i>Customise</b></a>
+    <a href="index.php" class="w3-text-white j-hover-darkish-blue w3-button">Home</a>
+    <a href="user-area.php" class="w3-text-white j-hover-darkish-blue w3-button">User Area</a>
+    <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red w3-button" style="display:none">
+      <i class="fa fa-user"></i>
+    </a>
   </div>
-  
-<!-- End Page Container -->
+	<div class="w3-container w3-content j-results" style="max-width:1400px;margin-top:20px">
+	  <div class="w3-center j-spinner-padding" id="loadingIcon">
+			<i class="fa fa-refresh fa-spin" style="font-size:48px"></i>
+		</div>
+		
+	  <div class="w3-row" id="personresults">
+	    <div class="w3-col m3">
+	      <div class="w3-card-2 j-results-border">
+	        <div class="w3-container">
+	         <h3 class="w3-center j-results-title" id="name"></h4>
+	         <p class="w3-center j-results-image" id="photo"></p>
+					 <div class='w3-center' id='personfave'>
+						 <a id="addToFavesLinkPerson">
+							 <i class="fa fa-plus-square-o addtofaves" aria-hidden="true" style="display:inline"></i>
+							 <p id="personlabel" class="favouriteslabel" style="display:none">Add to Favourites</p>
+						 </a>
+					 </div>
+	         <hr>
+	         <p id="placeOfBirth"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> </p>
+	         <p id="dateOfBirth"><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> </p>
+	        </div>
+	      </div>
+	    </div>
+    
+	    <div class="w3-col m5">
+	      <div class="w3-container w3-card-2 w3-white w3-round w3-margin" style="margin-top:0 !important;">
+	        <h4 id="filmographyTitle">Biography</h4>
+					<p id="bio"></p>
+	      </div> 
+	    </div>
+		
+	    <div class="w3-col m4">
+	      <div class="w3-card-2 j-results-border_filmography">
+					<h3 id="filmographyTitle" class="j-results-filmography-title">Filmography</h3>
+					<ul class="j-results-filmography" id="filmographyList"></ul>
+	      </div> 
+	    </div>
+	  </div>
+	</div>
 </div>
 
-<!-- Footer -->
-<footer class="w3-container w3-center w3-opacity w3-margin-bottom">
-	<hr>
-  <h5>Find Us On</h5>
-  <div class="w3-xlarge w3-padding-16">
-    <i class="fa fa-facebook-official w3-hover-text-indigo"></i>
-    <i class="fa fa-instagram w3-hover-text-purple"></i>
-    <i class="fa fa-snapchat w3-hover-text-yellow"></i>
-    <i class="fa fa-pinterest-p w3-hover-text-red"></i>
-    <i class="fa fa-twitter w3-hover-text-light-blue"></i>
-    <i class="fa fa-linkedin w3-hover-text-indigo"></i>
+<footer>
+  <div class="w3-center">
+    Created by J. Blaut
   </div>
-  <!-- <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p> -->
 </footer>
 
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="scripts/main.js"></script>
 <script>
+	var loggedIn = <?php echo isset($_SESSION['logged_in']) ? json_encode($_SESSION['logged_in']) : 'bkasdas'; ?>;
 	var searchQuery = <?php echo json_encode($searchQuery); ?>;
 	searchQuery = searchQuery.replace(" ", "+");
 	searchQuery = searchQuery.toLowerCase();
-	 
+
 	var apiUrl = "http://www.myapifilms.com/imdb/idIMDB?name=" + searchQuery + "&token=72dff507-0f89-4d9a-b53b-6f83e8d7e6ac&format=json&language=en-us&filmography=1&exactFilter=0&limit=1&bornDied=0&starSign=0&uniqueName=0&actorActress=1&actorTrivia=0&actorPhotos=0&actorVideos=0&salary=0&spouses=0&tradeMark=0&personalQuotes=0&starMeter=0&fullSize=0";
 	
 	$.when(
 		$.get(apiUrl, function(results) { }, 'jsonp')
 	).then(function(results){
-		document.getElementById("results").style.display = "block";
+		document.getElementById("personresults").style.display = "block";
 		var data = results.data.names[0];
-	
+		
 		$("#name").append(data.name);
 		$("#bio").append(data.bio);
 		$("#placeOfBirth").append(data.placeOfBirth);
 		$("#dateOfBirth").append(data.dateOfBirth);
 		document.getElementById("photo").innerHTML = "<img src='" + data.urlPhoto + "' style='width:106px' />";
 		document.getElementById("loadingIcon").style.display = "none";
-
+		
 		var filmography = data.filmographies[0];
 		
 		for (var i = 0; i < filmography.filmography.length; i++) {
@@ -117,16 +103,43 @@
 			films = films.split("'").join("%27");
 			films = films.split("&").join("%26");
 			films = films.toLowerCase();
-
-			$("#filmographyList").append("<li><a href='/movie.php?id=" + films + "'>" + filmography.filmography[i].title + "</a></li>");
+		
+			$("#filmographyList").append("<li><a href='movie.php?id=" + films + "'>" + filmography.filmography[i].title + "</a></li>");
+		}
+		
+		console.log(filmography.filmography.length);
+		console.log(data.bio.length);
+		
+		if (filmography.filmography.length < 20 && data.bio.length < 2000) {
+			$('.j-results').css('padding-top','200px');
+			$('.j-results').css('padding-bottom','200px');
 		}
 	});
 	
+	var addToFavesLink = 'favourite.php?id=' + data.idIMDB;
+	
+	$('#addToFavesLinkMovie').attr('href', addToFavesLink);
+	
 	if (document.getElementById("name").innerHTML == "") {
 		document.getElementById("loadingIcon").style.display = "block";
-		document.getElementById("results").style.display = "none";
+		document.getElementById("personresults").style.display = "none";
 	}
+	
+	var loggedIn = <?php echo json_encode($loggedIn); ?>;
+	var username = <?php echo json_encode($username); ?>;
+
+	if (loggedIn == 'true') {
+		$('#personfave').show();
+	}
+	
+	$("#personlabel").hide();
+	$("#personfave").mouseenter(function(){
+			$("#personlabel").show('slow');
+	});
+	$("#personfave").mouseleave(function(){
+			$("#personlabel").hide('slow');
+	});
 </script>
-<?php session_destroy(); ?>
+<script src="scripts/loggedIn.js"></script>
 </body>
 </html>
