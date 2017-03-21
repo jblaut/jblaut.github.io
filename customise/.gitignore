@@ -7,3 +7,4 @@ app/styles/.sass-cache
 .sass-cache
 bower_components
 test/bower_components
+app/includes/dbConnection.php
