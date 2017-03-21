@@ -5,6 +5,10 @@
 /* Coolors Exported Palette - coolors.co/222222-ffffff-4b4e6d-80a1d4-84dcc6 */
 /* W3.CSS 2.96 Feb 2017 by Jan Egil and Borge Refsnes */
 
+$blueish-white: #dbe7ff;
+$blue: #0e80f2;
+$dark-blue: #283142;
+
 html {
   box-sizing: border-box
 }
@@ -1152,7 +1156,7 @@ input[type=radio].w3-radio:disabled+.w3-validate {
 }
 
 .w3-content {
-  max-width: 980px;
+  max-width: 1000px;
   margin: auto
 }
 
@@ -1192,7 +1196,7 @@ input[type=radio].w3-radio:disabled+.w3-validate {
 }
 
 .w3-hide {
-  display: none!important
+  display: none
 }
 
 .w3-show-block,
@@ -1521,8 +1525,16 @@ input[type=radio].w3-radio:disabled+.w3-validate {
   margin: 0!important
 }
 
+.w3-margin-top-small {
+  margin-top: 8px!important
+}
+
 .w3-margin-top {
   margin-top: 16px!important
+}
+
+.w3-margin-top-large {
+  margin-top: 24px!important
 }
 
 .w3-margin-bottom {
@@ -2522,5 +2534,195 @@ input[type=radio].w3-radio:disabled+.w3-validate {
 }
 
 footer {
-  padding-top: 12px !important;
+  padding: 12px 0 !important;
+  background-color: $dark-blue;
+  color:white;
+}
+
+.favouriteslabel {
+  font-size: 10px;
+  margin-top: 5px !important;
+}
+
+.j-intro {
+  // height: 600px;
+  background: linear-gradient(141deg, $dark-blue 0%, $blue 90%);
+  color: white;
+  border-bottom: 2px solid black;
+  box-shadow: 2px 0 10px black;
+  
+  .w3-btn {
+    background-color: $dark-blue!important;
+    color:white!important;
+    padding: 8px;
+    width: 150px;
+  }
+  
+  .j-hover-dark-blue {
+    text-shadow: 1px 1px 5px black;
+  }
+}
+
+.j-search-box {
+  padding: 200px 0;
+}
+
+.j-search-border, .j-results-border {
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px $blueish-white;
+  background-color: rgba(40,49,66,0.3);
+}
+
+.j-results-border_filmography {
+  border: 1px solid white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px $blueish-white;
+  background-color: rgba(40,49,66,0.3);
+}
+
+.j-hover-dark-blue:hover {
+  color: #fff!important;
+  background-color: $dark-blue!important
+}
+
+.j-hover-blue:hover {
+  color: #fff!important;
+  background-color: $blue!important
+}
+
+.j-hover-darkish-blue:hover {
+  color: $dark-blue!important;
+  background-color: $blueish-white!important
+}
+
+.j-radio-buttons {
+  margin-top: 10px;
+  
+  input {
+    margin-right: 10px;
+  }
+  
+  label {
+    margin-right: 15px;
+  }
+}
+
+.j-login, .j-features-1 {
+  color: $dark-blue;
+  padding: 100px 0;
+}
+
+.j-login-border {
+  padding: 20px;
+  border-left: 1px solid $dark-blue;
+  border-right: 1px solid $dark-blue;
+  // border-radius: 10px;
+  // box-shadow: 1px 1px 5px $dark-blue;
+  // background-color: rgba(40,49,66,0.3);
+}
+
+.registeronly {
+  display: none;
+}
+
+.j-features-2 {
+  background: linear-gradient(141deg, $dark-blue 0%, $blue 90%);
+  color: white;
+  padding: 100px 0;
+}
+
+.j-results {
+  padding: 50px 0;
+}
+
+.addtofaves {
+  color:#66ff33;
+  font-size:25px!important;
+}
+
+.j-results-image > img {
+  border-radius: 5px;
+  border: 1px solid white;
+  box-shadow: 1px 1px 5px $blue;
+}
+
+.j-results-title, .j-results-filmography-title {
+  text-shadow: 1px 1px 5px black;
+}
+
+.j-results-filmography-title {
+  padding: 0 20px;
+}
+
+.j-results-filmography {
+  padding-left: 0!important;
+  
+  li {
+    list-style: none;
+    padding: 5px 0 5px 20px;
+    
+    a {
+      text-decoration: none;
+    }
+  }
+  
+  li:hover {
+    background-color: white;
+    color: $dark-blue;
+    text-decoration: underline;
+  }
+  
+  li:hover:nth-child(even) {
+    text-decoration: underline;
+    background-color: $dark-blue;
+    color: white;
+  }
+}
+
+.j-faded-white {
+  background-color: rgba(255,255,255,0.9);
+  color: black
+}
+
+.j-spinner-padding {
+  padding: 200px 0;
+}
+
+#addToFavesLinkPerson, #addToFavesLinkMovie {
+  text-decoration: none;
+}
+
+.movies {
+  &:first-of-type {
+    padding-right: 15px!important;
+    border-right: 1px solid white!important;
+  }
+  
+  &:nth-of-type(2) {
+    padding-left: 15px!important;
+  }
+}
+
+.j-overflow {
+  overflow: auto;
+  height: 400px;
+}
+
+.j-search-border2 {
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px $dark-blue;
+  background: linear-gradient(141deg, #283142 0%, #0e80f2 90%); 
+  color: white;
+}
+
+.divider:last-of-type {
+  display: none;
+}
+
+.j-middle-noresults {
+  padding: 152px 0;
 }
