@@ -5,3 +5,5 @@ bower_components
 test/bower_components
 app/includes/dbConnection.php
 .sass-cache
+*.css
+*.css.map
