@@ -83,9 +83,9 @@
             <button class="w3-btn w3-dark-grey" id="registerButton" onclick="openRegister()" type="button">Register</button>
             <button class="w3-btn w3-dark-grey" id="registerButtonSubmit" onclick="validatePassword()" type="submit" style="display:none">Register</button>
           </div>
-          <div class="w3-margin-top">
+          <!-- <div class="w3-margin-top">
             <a href="" id="forgottenpassword">Forgotten Password</a>
-          </div>
+          </div> -->
         </form>
         </div>
       </div>
@@ -111,7 +111,7 @@ function openRegister() {
   $('#loginButtonSubmit').hide();
   $('#registerButtonSubmit').show();
   $('#registerButton').hide();
-  $('#forgottenpassword').hide();
+  // $('#forgottenpassword').hide();
   $('#loginForm').attr('action', "register.php");
 }
 
@@ -121,7 +121,7 @@ function login() {
   $('#loginButtonSubmit').show();
   $('#registerButtonSubmit').hide();
   $('#registerButton').show();
-  $('#forgottenpassword').show();
+  // $('#forgottenpassword').show();
   $('#loginForm').attr('action', "login.php");
 }
 
