@@ -1641,6 +1641,10 @@ input[type=radio].w3-radio:disabled+.w3-validate {
   padding-bottom: 8px!important
 }
 
+.w3-padding-bottom-big {
+  padding-bottom: 16px!important
+}
+
 .w3-padding-left {
   padding-left: 16px!important
 }
@@ -2567,6 +2571,10 @@ footer {
   padding: 200px 0;
 }
 
+.j-search-box-small {
+  padding: 100px 0;
+}
+
 .j-search-border, .j-results-border {
   padding: 20px;
   border: 1px solid white;
@@ -2725,4 +2733,31 @@ footer {
 
 .j-middle-noresults {
   padding: 152px 0;
+}
+
+.j-rating label {
+  margin-left: 10px;
+}
+
+.j-rate-list {
+  &:nth-child(even) {
+    text-decoration: underline;
+    background-color: $dark-blue;
+    color: white;
+  }
+}
+
+.logo-button {
+  border: none;
+  display: inline-block;
+  outline: 0;
+  padding: 6px 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none!important;
+  color: #fff;
+  background-color: #000;
+  text-align: center;
+  cursor:default;
+  white-space: nowrap;
 }

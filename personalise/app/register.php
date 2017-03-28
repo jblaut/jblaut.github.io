@@ -13,11 +13,11 @@
 	while($row = mysqli_fetch_array($result)) {
 		if ($username == $row['userName']) {
 			$_SESSION['registerError'] = 'Username already exists.';
-			header('Location: user-area.php');
+			header('Location: index.php');
 			die();
 		} else if ($email == $row['userEmail']) {
 			$_SESSION['registerError'] = 'E-mail is already being used.';
-			header('Location: user-area.php');
+			header('Location: index.php');
 			die();
 		}
 	}
@@ -31,9 +31,9 @@
 
 	$_SESSION['logged_in'] = 'true';
 	$_SESSION['username'] = $username;
-	$_SESSION['userID'] = $row['userID'];
+	$_SESSION['userID'] = $row['user_id'];
 	
 	mysqli_close($con);
 	
-	header('Location: index.php');
+	header('Location: profile.php?id=' . $row['user_id']);
 ?>
