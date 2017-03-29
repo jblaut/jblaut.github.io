@@ -57,11 +57,11 @@
 <div class="j-features-1">
   <div class="w3-container w3-content">
     <div class="w3-row">
-      <div class="w3-col m5">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor risus, consectetur eu erat ut, pretium vestibulum urna. Cras at venenatis felis. Maecenas id quam sit amet lectus tincidunt auctor. Vivamus hendrerit fermentum massa, vel facilisis metus tristique et. Curabitur consectetur ex nec imperdiet bibendum. Ut suscipit id libero eu dignissim. Cras a mattis elit, non elementum ipsum.
+      <div class="w3-col m6 j-features-text">
+        You can create your own user profile!
       </div>
-      <div class="w3-col m7">
-
+      <div class="w3-col m6 w3-center j-font-icon">
+        <i class="fa fa-user-o" aria-hidden="true"></i>
       </div>
     </div>
   </div>
@@ -69,11 +69,11 @@
 <div class="j-features-2">
   <div class="w3-container w3-content">
     <div class="w3-row">
-      <div class="w3-col m6">
-        <br>
+      <div class="w3-col m6 w3-center j-font-icon">
+        <i class="fa fa-heart" aria-hidden="true"></i>
       </div>
-      <div class="w3-col m5">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor risus, consectetur eu erat ut, pretium vestibulum urna. Cras at venenatis felis. Maecenas id quam sit amet lectus tincidunt auctor. Vivamus hendrerit fermentum massa, vel facilisis metus tristique et. Curabitur consectetur ex nec imperdiet bibendum. Ut suscipit id libero eu dignissim. Cras a mattis elit, non elementum ipsum.
+      <div class="w3-col m6 j-features-text">
+        Add movies, tv shows or people to favourites!
       </div>
     </div>
   </div>
@@ -81,11 +81,11 @@
 <div class="j-features-1">
   <div class="w3-container w3-content">
     <div class="w3-row">
-      <div class="w3-col m5">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor risus, consectetur eu erat ut, pretium vestibulum urna. Cras at venenatis felis. Maecenas id quam sit amet lectus tincidunt auctor. Vivamus hendrerit fermentum massa, vel facilisis metus tristique et. Curabitur consectetur ex nec imperdiet bibendum. Ut suscipit id libero eu dignissim. Cras a mattis elit, non elementum ipsum.
+      <div class="w3-col m6 j-features-text">
+        Make the account your own!
       </div>
-      <div class="w3-col m7">
-
+      <div class="w3-col m6 w3-center j-font-icon">
+        <i class="fa fa-cog" aria-hidden="true"></i>
       </div>
     </div>
   </div>
