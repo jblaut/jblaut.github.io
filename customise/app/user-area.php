@@ -3,6 +3,7 @@
   $loggedIn = isset($_SESSION['logged_in']) ? $_SESSION['logged_in'] : false;
   $username = isset($_SESSION['username']) ? $_SESSION['username'] : false;
   $error = isset($_SESSION['registerError']) ? $_SESSION['registerError'] : false;
+  $success = isset($_SESSION['registerSuccess']) ? $_SESSION['registerSuccess'] : 'false';
   
   if ($loggedIn == true && $username != false) {
     header('Location: index.php');
@@ -45,6 +46,7 @@
         <div class="j-login-border">
         <h3>Login/Register</h3>
         <h6 id='error' class="w3-text-red w3-hide"></h6>
+        <h6 id='success' class="w3-text-green w3-hide"></h6>
         <form id="loginForm" method="post" action="login.php">
           <div class="w3-row-padding" style="margin:0 -16px;">
             
@@ -102,6 +104,7 @@
 <script src="scripts/main.js"></script>
 <script>
 var error = <?php echo json_encode($error); ?>;
+var success = <?php echo json_encode($success); ?>;
 var password = document.getElementById('password');
 var confirmPassword = document.getElementById('confirmPassword');
 
@@ -127,6 +130,10 @@ function login() {
 
 if (error != 'false') {
   $('#error').html(error).show();
+}
+
+if (success != 'false') {
+  $('#success').html(success).show();
 }
 
 function validatePassword() {
