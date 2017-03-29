@@ -29,11 +29,10 @@
 	$selectRunQuery = mysqli_query($con, $select);
 	$row = mysqli_fetch_array($selectRunQuery, MYSQLI_ASSOC);
 
-	$_SESSION['logged_in'] = 'true';
-	$_SESSION['username'] = $username;
-	$_SESSION['userID'] = $row['userID'];
-	
+	$_SESSION['logged_in'] = 'false';
+	$_SESSION['registerSuccess'] = "You have successfully created your account. You can log in now!";
+
 	mysqli_close($con);
 	
-	header('Location: index.php');
+	header('Location: user-area.php');
 ?>

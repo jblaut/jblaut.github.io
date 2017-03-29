@@ -14,7 +14,7 @@ if (mysqli_num_rows($result) > 0) {
 	$_SESSION['logged_in'] = 'true';
 	$_SESSION['username'] = $username;
 	$_SESSION['userID'] = $row['userID'];
-	header('Location: index.php');
+	header('Location: dashboard.php');
 } else if (mysqli_num_rows($result) <= 0) {
 	$_SESSION['logged_in'] = 'false';
 	$_SESSION['registerError'] = "Incorrect username or password.";
