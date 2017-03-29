@@ -9,12 +9,12 @@ if ($loggedIn == 'false') {
   header('Location: index.php');
 } 
 
-$urlJourney = substr($_SERVER['HTTP_REFERER'], strrpos($_SERVER['HTTP_REFERER'], '/') + 1);
-
-if ($urlJourney != 'login.php' && $urlJourney != 'register.php' && $urlJourney != 'index.php') {
-	header('Location: index.php');
-	die();
-}
+// $urlJourney = substr($_SERVER['HTTP_REFERER'], strrpos($_SERVER['HTTP_REFERER'], '/') + 1);
+// 
+// if ($urlJourney != 'login.php' && $urlJourney != 'register.php' && $urlJourney != 'index.php') {
+// 	header('Location: index.php');
+// 	die();
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en-gb">
