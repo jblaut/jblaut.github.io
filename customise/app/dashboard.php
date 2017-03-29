@@ -23,6 +23,10 @@ if ($row['movieFav'] != '') {
 } else {
 	$_SESSION['noResultsMovie'] = "You have not added any movies yet!";
 }
+
+if ($loggedIn == 'false') {
+	header('Location: index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en-gb">
@@ -56,6 +60,9 @@ if ($row['movieFav'] != '') {
 					if (isset($_SESSION['noResultsPerson'])) {
 						echo "<h3 class='w3-center j-middle-noresults'>" . $_SESSION['noResultsPerson'] . "</h3>";
 					} else {
+						echo '<div class="w3-center j-spinner-padding-small" id="loadingIcon">';
+						echo '<i class="fa fa-refresh fa-spin" style="font-size:48px"></i>';
+						echo '</div>';
 						foreach ($favouritePeople as $person) {
 							include 'includes/favouritePeople.php';
 						}
