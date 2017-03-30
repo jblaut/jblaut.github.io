@@ -6,22 +6,28 @@ include 'includes/dbConnection.php';
 $loggedIn = isset($_SESSION['logged_in']) ? $_SESSION['logged_in'] : 'false';
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'false';
 
-$select = "SELECT * FROM users WHERE userID=" . $_SESSION['userID'] . ";";
-$selectRunQuery = mysqli_query($con, $select);
-$row = mysqli_fetch_array($selectRunQuery, MYSQLI_ASSOC);
+$userID = $_SESSION['userID'];
 
-if ($row['personFav'] != '') {
-	$favouritePeople = explode(",",$row['personFav']);
-	unset($_SESSION['noResultsPerson']);
-} else {
-	$_SESSION['noResultsPerson'] = "You have not added any people yet!";
+$selectPeople = "SELECT personID, personName FROM user_favPeople WHERE userID=" . $_SESSION['userID'] . ";";
+$selectPeopleRunQuery = mysqli_query($con, $selectPeople);
+
+if (mysqli_num_rows($selectPeopleRunQuery) > 0) {
+	while($rowPeople = mysqli_fetch_array($selectPeopleRunQuery, MYSQLI_ASSOC)) {
+		$favouritePeople[] = array($rowPeople['personID']);
+	}
+} else if (mysqli_num_rows($selectPeopleRunQuery) <= 0) {
+	$errorPeople = "You have not added any people yet!";
 }
 
-if ($row['movieFav'] != '') {
-	$favouriteMovies = explode(",",$row['movieFav']);
-	unset($_SESSION['noResultsMovie']);
-} else {
-	$_SESSION['noResultsMovie'] = "You have not added any movies yet!";
+$selectMovies = "SELECT movieID, movieName FROM user_favMovies WHERE userID=" . $_SESSION['userID'] . ";";
+$selectMoviesRunQuery = mysqli_query($con, $selectMovies);
+
+if (mysqli_num_rows($selectMoviesRunQuery) > 0) {
+	while($rowMovies = mysqli_fetch_array($selectMoviesRunQuery, MYSQLI_ASSOC)) {
+		$favouriteMovies[] = array($rowMovies['movieID']);
+	}
+} else if (mysqli_num_rows($selectMoviesRunQuery) <= 0) {
+	$errorMovies = "You have not added any movies yet!";
 }
 
 if ($loggedIn == 'false') {
@@ -45,6 +51,7 @@ if ($loggedIn == 'false') {
     <a class="w3-text-white w3-button" style="background-color:#283142"><b><i class="fa fa-arrows w3-margin-right"></i>Customise</b></a>
     <a href="index.php" class="w3-text-white j-hover-darkish-blue w3-button">Home</a>
     <a href="user-area.php" class="w3-text-white j-hover-darkish-blue w3-button" id="userarea">User Area</a>
+    <a href="settings.php" class="w3-text-white j-hover-darkish-blue w3-button" id="settings" style='display:none;'>Settings</a>
     <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red w3-button" style="display:none">
       <i class="fa fa-user"></i>
     </a>
@@ -57,8 +64,8 @@ if ($loggedIn == 'false') {
 			<h2 class="w3-center w3-margin-bottom">Favourite People</h2>
       <div class="j-search-border j-overflow" id='people'>
 				<?php
-					if (isset($_SESSION['noResultsPerson'])) {
-						echo "<h3 class='w3-center j-middle-noresults'>" . $_SESSION['noResultsPerson'] . "</h3>";
+					if (isset($errorPeople)) {
+						echo "<h3 class='w3-center j-middle-noresults'>" . $errorPeople . "</h3>";
 					} else {
 						echo '<div class="w3-center j-spinner-padding-small" id="loadingIcon">';
 						echo '<i class="fa fa-refresh fa-spin" style="font-size:48px"></i>';
@@ -79,8 +86,8 @@ if ($loggedIn == 'false') {
 			<h2 class="w3-center w3-margin-bottom">Favourite Movies</h2>
       <div class="j-search-border2 j-overflow" id='movies'>
         <?php
-					if (isset($_SESSION['noResultsMovie'])) {
-						echo "<h3 class='w3-center j-middle-noresults'>" . $_SESSION['noResultsMovie'] . "</h3>";
+					if (isset($errorMovies)) {
+						echo "<h3 class='w3-center j-middle-noresults'>" . $errorMovies . "</h3>";
 					} else {
 						foreach ($favouriteMovies as $movie) {
 							include 'includes/favouriteMovies.php';
@@ -95,9 +102,41 @@ if ($loggedIn == 'false') {
 <div class="j-features-2">
   <div class="w3-container w3-content">
     <div class="w3-row">
-			<h2 class="w3-center w3-margin-bottom">Top Movies per Your Favourite Genres</h2>
-      <div class="j-search-border" id='genres'>
-				
+			<h2 class="w3-center w3-margin-bottom">Top Movies per Your Favourite Genre</h2>
+      <div class="j-search-border j-overflow" id='genres'>
+				<?php
+					$getGenres = "SELECT genreName FROM genres INNER JOIN user_favGenre ON genres.genreID = user_favGenre.genreID WHERE userID = $userID;";
+					$runGetGenresQuery = mysqli_query($con, $getGenres);
+
+					if (mysqli_num_rows($runGetGenresQuery) == 1) {
+						$rowGenres = mysqli_fetch_array($runGetGenresQuery, MYSQLI_ASSOC);
+						$string = file_get_contents("includes/response.json");
+						$json_a = json_decode($string, true);
+						$movies = $json_a['data']['movies'];
+						
+						for ($x = 0; $x < sizeof($movies); $x++) {
+							$genres = $movies[$x]['genres'];
+							foreach ($genres as $genre) {
+								if ($genre == $rowGenres['genreName']) {
+									echo "<div class='w3-row w3-margin-top'>";
+									echo "<div class='w3-col m6 w3-center'>";
+									echo "<h4 class='w3-center'>" . $json_a['data']['movies'][$x]['title'] . "</h4>" ;
+									echo "<img src='" . $json_a['data']['movies'][$x]['urlPoster'] . "' width=150px>";
+									echo "</div>";
+									echo "<div class='w3-col m6'>";
+									echo "<p>" . $json_a['data']['movies'][$x]['simplePlot'] . "</p>" ;
+									echo "<a href='" . $json_a['data']['movies'][$x]['urlIMDB'] . "' class='w3-btn' target='_blank'>More</a>" ;
+									echo "</div>" ;
+									echo "</div>";
+									echo "<hr class='divider'>";
+								}
+							}
+						}
+					} else if (mysqli_num_rows($runGetGenresQuery) <= 0) {
+						$errorGenres = "You have not selected any genres yet!";
+						echo "<h3 class='w3-center j-middle-noresults'>" . $errorGenres . "</h3>";
+					}
+				?>
       </div>
     </div>
   </div>
@@ -116,6 +155,7 @@ var username = <?php echo json_encode($username); ?>;
 if (loggedIn == 'true') {
   $('#userarea').text('Dashboard');
   $('#userarea').attr('href', 'dashboard.php');
+	$('#settings').show();
 }
 </script>
 <script src="scripts/loggedIn.js"></script>
