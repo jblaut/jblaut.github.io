@@ -21,6 +21,7 @@
     <a class="w3-text-white w3-button" style="background-color:#283142"><b><i class="fa fa-arrows w3-margin-right"></i>Customise</b></a>
     <a href="index.php" class="w3-text-white j-hover-darkish-blue w3-button">Home</a>
     <a href="user-area.php" class="w3-text-white j-hover-darkish-blue w3-button" id="userarea">User Area</a>
+    <a href="settings.php" class="w3-text-white j-hover-darkish-blue w3-button" id="settings" style='display:none;'>Settings</a>
     <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red w3-button" style="display:none">
       <i class="fa fa-user"></i>
     </a>
@@ -105,6 +106,7 @@ console.log(loggedIn);
 if (loggedIn == 'true') {
   $('#userarea').text('Dashboard');
   $('#userarea').attr('href', 'dashboard.php');
+  $('#settings').show();
 }
 </script>
 <script src="scripts/loggedIn.js"></script>
