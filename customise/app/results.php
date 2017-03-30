@@ -152,8 +152,8 @@
 				$('.j-results').css('padding-top','200px');
 				$('.j-results').css('padding-bottom','200px');
 			}
-			
-			var addToFavesLink = 'favourite.php?id=' + data.idIMDB;
+			var name = data.name;
+			var addToFavesLink = 'favourite.php?id=' + data.idIMDB + '&name=' + name.replace(/ /g, "+");
 			
 			$('#addToFavesLinkPerson').attr('href', addToFavesLink);
 		} else {
@@ -211,7 +211,8 @@
 				$('.j-results').css('padding-bottom','200px');
 			}
 			
-			var addToFavesLink = 'favourite.php?id=' + data.idIMDB;
+			var title = data.title;
+			var addToFavesLink = 'favourite.php?id=' + data.idIMDB + '&name=' + title.replace(/ /g, "_"); 
 			
 			$('#addToFavesLinkMovie').attr('href', addToFavesLink);
 		}
