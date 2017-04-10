@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 include 'includes/dbConnection.php';
@@ -52,9 +52,7 @@ if ($loggedIn == 'false') {
     <a href="index.php" class="w3-text-white j-hover-darkish-blue w3-button">Home</a>
     <a href="user-area.php" class="w3-text-white j-hover-darkish-blue w3-button" id="userarea">User Area</a>
     <a href="settings.php" class="w3-text-white j-hover-darkish-blue w3-button" id="settings" style='display:none;'>Settings</a>
-    <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red w3-button" style="display:none">
-      <i class="fa fa-user"></i>
-    </a>
+    <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-red w3-hover-black w3-button" style="display:none">Log Out</a>
   </div>
   <!-- Navigation Bar -->
 </div>
@@ -113,7 +111,7 @@ if ($loggedIn == 'false') {
 						$string = file_get_contents("includes/response.json");
 						$json_a = json_decode($string, true);
 						$movies = $json_a['data']['movies'];
-						
+
 						for ($x = 0; $x < sizeof($movies); $x++) {
 							$genres = $movies[$x]['genres'];
 							foreach ($genres as $genre) {
