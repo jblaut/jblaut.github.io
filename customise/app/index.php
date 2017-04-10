@@ -1,6 +1,6 @@
 <?php
   session_start();
-  
+
   $loggedIn = isset($_SESSION['logged_in']) ? $_SESSION['logged_in'] : 'false';
   $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'false';
 ?>
@@ -22,9 +22,7 @@
     <a href="index.php" class="w3-text-white j-hover-darkish-blue w3-button">Home</a>
     <a href="user-area.php" class="w3-text-white j-hover-darkish-blue w3-button" id="userarea">User Area</a>
     <a href="settings.php" class="w3-text-white j-hover-darkish-blue w3-button" id="settings" style='display:none;'>Settings</a>
-    <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red w3-button" style="display:none">
-      <i class="fa fa-user"></i>
-    </a>
+    <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-red w3-hover-black w3-button" style="display:none">Log Out</a>
   </div>
   <!-- Navigation Bar -->
 
@@ -58,11 +56,11 @@
 <div class="j-features-1">
   <div class="w3-container w3-content">
     <div class="w3-row">
-      <div class="w3-col m6 j-features-text">
+      <div class="w3-col m6 j-features-text w3-center">
         You can create your own user profile!
       </div>
       <div class="w3-col m6 w3-center j-font-icon">
-        <i class="fa fa-user-o" aria-hidden="true"></i>
+        <img src='images/loginreg.gif' class='w3-center' width='450px'/>
       </div>
     </div>
   </div>
@@ -71,9 +69,9 @@
   <div class="w3-container w3-content">
     <div class="w3-row">
       <div class="w3-col m6 w3-center j-font-icon">
-        <i class="fa fa-heart" aria-hidden="true"></i>
+        <img src='images/faves.gif' class='w3-center' width='450px'/>
       </div>
-      <div class="w3-col m6 j-features-text">
+      <div class="w3-col m6 j-features-text w3-center">
         Add movies, tv shows or people to favourites!
       </div>
     </div>
@@ -82,11 +80,11 @@
 <div class="j-features-1">
   <div class="w3-container w3-content">
     <div class="w3-row">
-      <div class="w3-col m6 j-features-text">
+      <div class="w3-col m6 j-features-text w3-center">
         Make the account your own!
       </div>
       <div class="w3-col m6 w3-center j-font-icon">
-        <i class="fa fa-cog" aria-hidden="true"></i>
+        <img src='images/settings.gif' class='w3-center' width='450px'/>
       </div>
     </div>
   </div>
@@ -102,7 +100,7 @@
 <script>
 var loggedIn = <?php echo json_encode($loggedIn); ?>;
 var username = <?php echo json_encode($username); ?>;
-console.log(loggedIn);
+
 if (loggedIn == 'true') {
   $('#userarea').text('Dashboard');
   $('#userarea').attr('href', 'dashboard.php');
