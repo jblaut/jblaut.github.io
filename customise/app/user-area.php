@@ -4,11 +4,11 @@
   $username = isset($_SESSION['username']) ? $_SESSION['username'] : false;
   $error = isset($_SESSION['registerError']) ? $_SESSION['registerError'] : false;
   $success = isset($_SESSION['registerSuccess']) ? $_SESSION['registerSuccess'] : 'false';
-  
+
   if ($loggedIn == true && $username != false) {
     header('Location: index.php');
   }
-  
+
   if (substr($_SERVER['HTTP_REFERER'], strrpos($_SERVER['HTTP_REFERER'], '/') + 1) != 'register.php') {
   	unset($_SESSION['registerError']);
   }
@@ -49,35 +49,35 @@
         <h6 id='success' class="w3-text-green w3-hide"></h6>
         <form id="loginForm" method="post" action="login.php">
           <div class="w3-row-padding" style="margin:0 -16px;">
-            
+
             <div class="w3-quarter w3-margin-top-small">
               <label class="w3-label">Username:</label>
             </div>
             <div class="w3-threequarter">
               <input class="w3-input w3-border" type="text" placeholder="Username" name="username" required>
             </div>
-            
+
             <div class="w3-quarter w3-margin-top-large registeronly">
               <label class="w3-label">E-mail:</label>
             </div>
             <div class="w3-threequarter w3-margin-top registeronly">
               <input class="w3-input w3-border" type="email" name="email" placeholder="E-mail">
             </div>
-            
+
             <div class="w3-quarter w3-margin-top-large">
               <label class="w3-label">Password:</label>
             </div>
             <div class="w3-threequarter w3-margin-top">
               <input class="w3-input w3-border" type="password" id="password" name="password" placeholder="Password" required>
             </div>
-            
+
             <div class="w3-quarter w3-margin-top-large registeronly">
               <label class="w3-label">Confirm Password:</label>
             </div>
             <div class="w3-threequarter w3-margin-top registeronly">
               <input class="w3-input w3-border" type="password" id="confirmPassword" placeholder="Confirm Password">
             </div>
-            
+
           </div>
           <div class="w3-margin-top">
             <button class="w3-btn w3-dark-grey" id="loginButton" onclick="login()" type="button" style="display:none">Login</button>
