@@ -30,9 +30,7 @@ $userGenreID = isset($rowGenres['genreID']) ? $rowGenres['genreID'] : null;
     <a href="index.php" class="w3-text-white j-hover-darkish-blue w3-button">Home</a>
     <a href="user-area.php" class="w3-text-white j-hover-darkish-blue w3-button" id="userarea">User Area</a>
     <a href="settings.php" class="w3-text-white j-hover-darkish-blue w3-button" id="settings" style='display:none;'>Settings</a>
-    <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red w3-button" style="display:none">
-      <i class="fa fa-user"></i>
-    </a>
+    <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-red w3-hover-black w3-button" style="display:none">Log Out</a>
   </div>
   <!-- Navigation Bar -->
 </div>
@@ -40,7 +38,7 @@ $userGenreID = isset($rowGenres['genreID']) ? $rowGenres['genreID'] : null;
   <div class="w3-container w3-content">
     <div class="w3-row">
 			<h2 class="w3-center w3-margin-bottom">Remove People</h2>
-			<?php 
+			<?php
 				$selectPeople = "SELECT favePersonID, personID, personName FROM user_favPeople WHERE userID=" . $_SESSION['userID'] . ";";
 				$selectPeopleRunQuery = mysqli_query($con, $selectPeople);
 
@@ -100,14 +98,14 @@ $userGenreID = isset($rowGenres['genreID']) ? $rowGenres['genreID'] : null;
 					<?php
 						$selectGenres = "SELECT * FROM genres;";
 						$selectGenresQuery = mysqli_query($con, $selectGenres);
-						
+
 						while($rowGenres = mysqli_fetch_array($selectGenresQuery, MYSQLI_ASSOC)) {
 							echo "<option value='" . $rowGenres['genreID'] . "'>" . $rowGenres['genreName'] . "</option>";
 						}
 					?>
 				</select>
 				<br><br>
-				<button class='w3-btn'>Submit</button>
+				<button class='w3-btn'>Change</button>
 			</form>
     </div>
   </div>
@@ -123,7 +121,7 @@ $userGenreID = isset($rowGenres['genreID']) ? $rowGenres['genreID'] : null;
 var loggedIn = <?php echo json_encode($loggedIn); ?>;
 var username = <?php echo json_encode($username); ?>;
 var genre = <?php echo json_encode($userGenreID); ?>;
-console.log(genre);
+
 if (loggedIn == 'true') {
   $('#userarea').text('Dashboard');
   $('#userarea').attr('href', 'dashboard.php');
