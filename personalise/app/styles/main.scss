@@ -2554,14 +2554,14 @@ footer {
   color: white;
   border-bottom: 2px solid black;
   box-shadow: 2px 0 10px black;
-  
+
   .w3-btn {
     background-color: $dark-blue!important;
     color:white!important;
     padding: 8px;
     width: 150px;
   }
-  
+
   .j-hover-dark-blue {
     text-shadow: 1px 1px 5px black;
   }
@@ -2607,11 +2607,11 @@ footer {
 
 .j-radio-buttons {
   margin-top: 10px;
-  
+
   input {
     margin-right: 10px;
   }
-  
+
   label {
     margin-right: 15px;
   }
@@ -2666,22 +2666,22 @@ footer {
 
 .j-results-filmography {
   padding-left: 0!important;
-  
+
   li {
     list-style: none;
     padding: 5px 0 5px 20px;
-    
+
     a {
       text-decoration: none;
     }
   }
-  
+
   li:hover {
     background-color: white;
     color: $dark-blue;
     text-decoration: underline;
   }
-  
+
   li:hover:nth-child(even) {
     text-decoration: underline;
     background-color: $dark-blue;
@@ -2707,7 +2707,7 @@ footer {
     padding-right: 15px!important;
     border-right: 1px solid white!important;
   }
-  
+
   &:nth-of-type(2) {
     padding-left: 15px!important;
   }
@@ -2723,7 +2723,7 @@ footer {
   border: 1px solid black;
   border-radius: 10px;
   box-shadow: 1px 1px 5px $dark-blue;
-  background: linear-gradient(141deg, #283142 0%, #0e80f2 90%); 
+  background: linear-gradient(141deg, #283142 0%, #0e80f2 90%);
   color: white;
 }
 
@@ -2760,4 +2760,9 @@ footer {
   text-align: center;
   cursor:default;
   white-space: nowrap;
+}
+
+#dataUsage {
+  text-decoration: underline;
+  cursor: pointer;
 }
