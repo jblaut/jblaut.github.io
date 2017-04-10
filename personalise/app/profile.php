@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 $loggedIn = isset($_SESSION['logged_in']) ? $_SESSION['logged_in'] : 'false';
@@ -7,14 +7,14 @@ $user_id = $_GET['id'];
 
 if ($loggedIn == 'false') {
   header('Location: index.php');
-} 
+}
 
-// $urlJourney = substr($_SERVER['HTTP_REFERER'], strrpos($_SERVER['HTTP_REFERER'], '/') + 1);
-// 
-// if ($urlJourney != 'login.php' && $urlJourney != 'register.php' && $urlJourney != 'index.php') {
-// 	header('Location: index.php');
-// 	die();
-// }
+$urlJourney = substr($_SERVER['HTTP_REFERER'], strrpos($_SERVER['HTTP_REFERER'], '/') + 1);
+
+if ($urlJourney != 'login.php' && $urlJourney != 'register.php' && $urlJourney != 'index.php' && $urlJourney != 'addRating.php' && preg_match('^profile.php\?id=[0-9]*^', $urlJourney) != 1) {
+	header('Location: index.php');
+	die();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en-gb">
@@ -33,13 +33,12 @@ if ($loggedIn == 'false') {
   <!-- Navigation Bar -->
   <div class="w3-bar" id="myNavbar">
     <a class="w3-text-white logo-button" style="background-color:#283142"><b><i class="fa fa-code w3-margin-right"></i>Personalise</b></a>
-    <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red w3-button" style="display:none">
-      <i class="fa fa-user"></i>
-    </a>
+    <a href="logout.php" id="loggedIn" class="w3-bar-item w3-button w3-hide-small w3-right w3-red w3-hover-black w3-button" style="display:none">Log Out</a>
+    <a href="profile.php?id=<?php echo $user_id;?>" id="profileLink" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-black w3-button" style="display:none">Profile</a>
   </div>
   <!-- Navigation Bar -->
 </div>
-<div class="w3-container w3-content" style="max-width:1400px;min-height:600px;margin-top:80px"> 
+<div class="w3-container w3-content" style="max-width:1400px;min-height:600px;margin-top:80px">
     <!-- The Grid -->
     <div class="w3-row">
       <!-- Left Column -->
@@ -99,11 +98,16 @@ if ($loggedIn == 'false') {
                     $count = mysqli_fetch_array(mysqli_query($con, $countQuery), MYSQLI_ASSOC);
                     $entries = $count['COUNT(rating)'];
 
-                    if ($entries > 10) {
-                      echo "<ol>";
+                    if ($entries >= 10) {
+                      echo "<ol id='recList'>";
                         include 'includes/rec_api.php';
                         foreach ($recommendations as $movie) {
-                        	echo "<li>" . $movie->title . "</li>";
+                          $duplicatesQuery = "SELECT * FROM recommendationDB.ratings INNER JOIN recommendationDB.movie_info ON ratings.movie_id = movie_info.movie_id WHERE movie_title=\"$movie->title\" AND user_id=$user_id";
+                          $deDupe = mysqli_query($con, $duplicatesQuery);
+
+                          if (mysqli_num_rows($deDupe) == 0) {
+                            echo "<li>" . $movie->title . "</li>";
+                          }
                         }
                       echo "</ol>";
                     } else {
@@ -185,6 +189,12 @@ $(function() {
     source: availableTags
   });
 });
+
+if ($('#recList li').length > 20) {
+  $('#recList li').slice(20).hide();
+} else {
+  $('#recList li').slice(10).hide();
+}
 </script>
 <script src="scripts/loggedIn.js"></script>
 </html>
