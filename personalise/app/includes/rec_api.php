@@ -1,5 +1,6 @@
 <?php 
 $user_id = $_GET['id'];
+# code from https://support.ladesk.com/061754-How-to-make-REST-calls-in-PHP?r=1
 $service_url = 'https://nfomheyj0h.execute-api.eu-west-1.amazonaws.com/prod/recommendation?user_id=' . $user_id;
 $curl = curl_init($service_url);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
