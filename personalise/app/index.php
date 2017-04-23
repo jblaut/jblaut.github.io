@@ -3,7 +3,7 @@
 
   $loggedIn = isset($_SESSION['logged_in']) ? $_SESSION['logged_in'] : 'false';
   $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'false';
-  $error = isset($_SESSION['registerError']) ? $_SESSION['registerError'] : false;
+  $error = isset($_SESSION['registerError']) ? $_SESSION['registerError'] : 'false';
   $user_id = isset($_SESSION['registerError']) ? $_SESSION['userID'] : '';
 ?>
 <!DOCTYPE html>
@@ -64,7 +64,7 @@
             <label class="w3-label">E-mail:</label>
           </div>
           <div class="w3-threequarter w3-margin-top registeronly">
-            <input class="w3-input w3-border" type="email" name="email" placeholder="E-mail">
+            <input class="w3-input w3-border" id="emailReq" type="email" name="email" placeholder="E-mail">
           </div>
 
           <div class="w3-quarter w3-margin-top-large">
@@ -141,6 +141,7 @@ function openRegister() {
   $('#registerButtonSubmit').show();
   $('#registerButton').hide();
   $('#loginForm').attr('action', "register.php");
+  $('#emailReq').attr('required', 'true');
 }
 
 function login() {
@@ -150,6 +151,7 @@ function login() {
   $('#registerButtonSubmit').hide();
   $('#registerButton').show();
   $('#loginForm').attr('action', "login.php");
+  $('#emailReq').removeAttr('required');
 }
 
 if (error != 'false') {

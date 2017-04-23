@@ -4,10 +4,11 @@
 	$searchQuery = $_GET['search'];
 	$loggedIn = isset($_SESSION['logged_in']) ? $_SESSION['logged_in'] : 'false';
 	$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'false';
+	$type = $_GET['searchType'];
 ?>
 <!DOCTYPE html>
 <html lang="en-gb">
-<title>Customise - <?php echo strtoupper($searchQuery); ?></title>
+<title>Customise - Results</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="styles/main.css">
@@ -142,11 +143,7 @@
 			var filmography = data.filmographies[0];
 
 			for (var i = 0; i < filmography.filmography.length; i++) {
-				var films = filmography.filmography[i].title;
-				films = films.split(" ").join("+");
-				films = films.split("'").join("%27");
-				films = films.split("&").join("%26");
-				films = films.toLowerCase();
+				var films = filmography.filmography[i].imdbid;
 
 				$("#filmographyList").append("<li><a href='movie.php?id=" + films + "'>" + filmography.filmography[i].title + "</a></li>");
 			}
@@ -201,13 +198,9 @@
 			var actors = data.actors[0];
 
 			for (var i = 0; i < data.actors.length; i++) {
-				var actors = data.actors[i].actorName;
-				actors = actors.split(" ").join("+");
-				actors = actors.split("'").join("%27");
-				actors = actors.split("&").join("%26");
-				actors = actors.toLowerCase();
+				var actorsID = data.actors[i].actorId;
 
-				$("#actorsList").append("<li><a href='actor.php?id=" + actors + "'>" + data.actors[i].actorName + "</a></li>");
+				$("#actorsList").append("<li><a href='actor.php?id=" + actorsID + "'>" + data.actors[i].actorName + "</a></li>");
 			}
 
 			if (data.actors.length < 20 && data.plot.length < 2000) {

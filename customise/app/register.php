@@ -13,16 +13,18 @@
 	while($row = mysqli_fetch_array($result)) {
 		if ($username == $row['userName']) {
 			$_SESSION['registerError'] = 'Username already exists.';
+			unset($_SESSION['registerSuccess']);
 			header('Location: user-area.php');
 			die();
 		} else if ($email == $row['userEmail']) {
 			$_SESSION['registerError'] = 'E-mail is already being used.';
+			unset($_SESSION['registerSuccess']);
 			header('Location: user-area.php');
 			die();
 		}
 	}
 
-	$newUserQuery = "INSERT INTO users (userName, userEmail, userPassword, dateCreated) VALUES ('" . $username . "', '" . $email . "', '" . $password . "', '" . date('m/d/Y h:i:s a', time()) ."');";
+	$newUserQuery = "INSERT INTO users (userName, userEmail, userPassword) VALUES ('" . $username . "', '" . $email . "', '" . $password . "');";
 	mysqli_query($con, $newUserQuery);
 
 	$select = "SELECT * FROM users WHERE userName = '$username' AND userEmail = '$email';";

@@ -61,7 +61,7 @@
               <label class="w3-label">E-mail:</label>
             </div>
             <div class="w3-threequarter w3-margin-top registeronly">
-              <input class="w3-input w3-border" type="email" name="email" placeholder="E-mail">
+              <input class="w3-input w3-border" id="emailReq" type="email" name="email" placeholder="E-mail">
             </div>
 
             <div class="w3-quarter w3-margin-top-large">
@@ -116,6 +116,7 @@ function openRegister() {
   $('#registerButton').hide();
   // $('#forgottenpassword').hide();
   $('#loginForm').attr('action', "register.php");
+  $('#emailReq').attr('required', 'true');
 }
 
 function login() {
@@ -126,6 +127,7 @@ function login() {
   $('#registerButton').show();
   // $('#forgottenpassword').show();
   $('#loginForm').attr('action', "login.php");
+  $('#emailReq').removeAttr('required');
 }
 
 if (error != 'false') {

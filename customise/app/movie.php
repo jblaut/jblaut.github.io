@@ -7,13 +7,12 @@
 ?>
 <!DOCTYPE html>
 <html lang="en-gb">
-<title>Customise - <?php echo strtoupper($movieId); ?></title>
+<title>Customise - Movie Results</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="styles/main.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="icon" type="image/png" href="images/favicon.png">
 
 <body class="w3-light-grey">
 
@@ -110,7 +109,7 @@
 	searchQuery = searchQuery.replace(" ", "+");
 	searchQuery = searchQuery.toLowerCase();
 
-	var apiUrl = "http://www.myapifilms.com/imdb/idIMDB?title=" + searchQuery + "&token=72dff507-0f89-4d9a-b53b-6f83e8d7e6ac&format=json&language=en-us&aka=0&business=0&seasons=0&seasonYear=1&technical=0&filter=2&exactFilter=0&limit=1&forceYear=0&trailers=1&movieTrivia=0&awards=0&moviePhotos=0&movieVideos=0&actors=1&biography=0&uniqueName=0&filmography=0&bornAndDead=0&starSign=0&actorActress=0&actorTrivia=0&similarMovies=0&adultSearch=0&goofs=0&keyword=0&quotes=0&fullSize=0&companyCredits=0&filmingLocations=0";
+	var apiUrl = "http://www.myapifilms.com/imdb/idIMDB?idIMDB=" + searchQuery + "&token=72dff507-0f89-4d9a-b53b-6f83e8d7e6ac&format=json&language=en-us&aka=0&business=0&seasons=0&seasonYear=1&technical=0&filter=2&exactFilter=0&limit=1&forceYear=0&trailers=1&movieTrivia=0&awards=0&moviePhotos=0&movieVideos=0&actors=1&biography=0&uniqueName=0&filmography=0&bornAndDead=0&starSign=0&actorActress=0&actorTrivia=0&similarMovies=0&adultSearch=0&goofs=0&keyword=0&quotes=0&fullSize=0&companyCredits=0&filmingLocations=0";
 
 	$.when(
 		$.get(apiUrl, function(results) { }, 'jsonp')
@@ -155,12 +154,8 @@
 		var actors = data.actors[0];
 
 		for (var i = 0; i < data.actors.length; i++) {
-			var actors = data.actors[i].actorName;
-			actors = actors.split(" ").join("+");
-			actors = actors.split("'").join("%27");
-			actors = actors.split("&").join("%26");
-			actors = actors.toLowerCase();
-
+			var actors = data.actors[i].actorId;
+console.log(actors);
 			$("#actorsList").append("<li><a href='actor.php?id=" + actors + "'>" + data.actors[i].actorName + "</a></li>");
 		}
 
@@ -175,7 +170,6 @@
 		$('#addToFavesLinkMovie').attr('href', addToFavesLink);
 	}).fail(function(results) {
 		document.getElementById("loadingIcon").style.display = "none";
-		document.getElementById("personresults").style.display = "none";
 		document.getElementById("movieresults").style.display = "none";
 		document.getElementById("error").style.display = "block";
 	});
